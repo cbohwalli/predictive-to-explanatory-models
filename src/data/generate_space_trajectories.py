@@ -67,7 +67,7 @@ def generate_space_trajectories(num_simulations=100, timesteps_per_sim=200, dt=0
                     # Add to total force vector accumulator
                     total_force += force_magnitude * direction
                 
-                # Acceleration Node: a = F / m
+                # a = F / m
                 accelerations[i] = total_force / masses[i]
 
             # --- 3. UPDATE VECTORS FOR THE NEXT FRAME ---
@@ -78,7 +78,7 @@ def generate_space_trajectories(num_simulations=100, timesteps_per_sim=200, dt=0
     return pd.DataFrame(dataset_rows)
 
 # Execute the generator
-df_trajectories = generate_space_trajectories(num_simulations=5, timesteps_per_sim=10, dt=0.1, num_objects=3)
+df_trajectories = generate_space_trajectories(num_simulations=5, timesteps_per_sim=1000, dt=0.1, num_objects=3)
 
 # Inspect the dataset structure
 print(f"Dataset generated successfully! Shape: {df_trajectories.shape}")
