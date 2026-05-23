@@ -4,7 +4,7 @@ import pandas as pd
 # Import your custom modular pipeline modules
 import src.data.preprocessing as prep
 import src.models.mlp_build as build
-import models.mlp_train_evaluate as train_eval
+import src.models.mlp_train_evaluate as train_eval
 
 def main():
     # --- GLOBAL HYPERPARAMETERS NODE ---
@@ -45,7 +45,6 @@ def main():
     )
 
     # --- 4. TRAIN & EVALUATE MODEL ---
-    print("\n[Step 4 & 5] Launching Training Loop with Adam Optimizer...")
     # The training function runs validation evaluation automatically at the end of each epoch
     trained_model = train_eval.train_evaluate_model(
         model=model, 
@@ -56,9 +55,9 @@ def main():
     )
     
     # --- 5. SAVE ARTIFACT ---
-    print("\n[Step 6] Saving trained model weights...")
-    torch.save(trained_model.state_dict(), "models/gravity_mlp_weights.pth")
-    print(" └── Weights successfully saved to 'models/gravity_mlp_weights.pth'")
+    print("\nSaving trained model weights...")
+    torch.save(trained_model.state_dict(), "src/models/gravity_mlp_weights.pth")
+    print(" └── Weights successfully saved to 'src/models/gravity_mlp_weights.pth'")
     print("\n🎉 Experiment complete!")
     print("="*60)
 
