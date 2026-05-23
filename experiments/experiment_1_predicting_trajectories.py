@@ -1,13 +1,12 @@
 import torch
 import pandas as pd
 
-# Import your custom modular pipeline modules
 import src.data.preprocessing as prep
 import src.models.mlp_build as build
 import src.models.mlp_train_evaluate as train_eval
 
 def main():
-    # --- GLOBAL HYPERPARAMETERS NODE ---
+    # --- GLOBAL HYPERPARAMETERS ---
     NUM_OBJECTS = 3
     BATCH_SIZE = 64
     EPOCHS = 20
