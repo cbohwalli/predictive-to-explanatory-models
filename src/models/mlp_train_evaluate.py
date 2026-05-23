@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-def train_model(model, train_loader, epochs=20, lr=0.001):
+def train_evaluate_model(model, train_loader, val_loader, epochs=20, lr=0.001):
     # Set device to GPU if available, otherwise CPU
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model.to(device)
