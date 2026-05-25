@@ -1,3 +1,4 @@
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -56,7 +57,16 @@ def train_evaluate_model(model, train_loader, val_loader, epochs=20, lr=0.001):
                 running_val_loss += loss.item() * batch_X.size(0)
         epoch_val_loss = running_val_loss / len(val_loader.dataset)
         
-        print(f"Epoch {epoch+1:02d} | Train MSE: {epoch_train_loss:.6f} | Val MSE: {epoch_val_loss:.6f}")
+        # 1. Convert MSE to RMSE (brings error back to the scaled data unit)
+        epoch_val_rmse = np.sqrt(epoch_val_loss)
+        
+        # 2. Divide by the total universe width (2.0) this locks metric into a clean 0 to 1+ range
+        spatial_error_score = epoch_val_rmse / 2.0
+        
+        # Convert to an explicit percentage for easy reading
+        spatial_error_percentage = spatial_error_score * 100
+        
+        print(f"Epoch {epoch+1:02d} | Train MSE: {epoch_train_loss:.6f} | Val Spatial Error: {spatial_error_percentage:.2f}%")
         
     print("-"*40 + "\nTraining Complete!")
     return model
