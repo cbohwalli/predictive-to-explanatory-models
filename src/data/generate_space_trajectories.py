@@ -78,7 +78,7 @@ def generate_space_trajectories(num_simulations=100, timesteps_per_sim=200, dt=0
     return pd.DataFrame(dataset_rows)
 
 # Execute the generator
-df_trajectories = generate_space_trajectories(num_simulations=5, timesteps_per_sim=1000, dt=0.1, num_objects=3)
+df_trajectories = generate_space_trajectories(num_simulations=6, timesteps_per_sim=10000, dt=0.1, num_objects=3)
 
 # Inspect the dataset structure
 print(f"Dataset generated successfully! Shape: {df_trajectories.shape}")
