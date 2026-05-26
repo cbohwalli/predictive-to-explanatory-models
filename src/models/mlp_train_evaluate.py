@@ -57,10 +57,10 @@ def train_evaluate_model(model, train_loader, val_loader, epochs=20, lr=0.001):
                 running_val_loss += loss.item() * batch_X.size(0)
         epoch_val_loss = running_val_loss / len(val_loader.dataset)
         
-        # 1. Convert MSE to RMSE (brings error back to the scaled data unit)
+        # Convert MSE to RMSE (brings error back to the scaled data unit)
         epoch_val_rmse = np.sqrt(epoch_val_loss)
         
-        # 2. Divide by the total universe width (2.0) this locks metric into a clean 0 to 1+ range
+        # Divide by the total universe width (2.0) this locks metric into a clean 0 to 1+ range
         spatial_error_score = epoch_val_rmse / 2.0
         
         # Convert to an explicit percentage for easy reading

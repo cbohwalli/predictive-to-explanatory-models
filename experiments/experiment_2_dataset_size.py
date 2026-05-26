@@ -5,7 +5,8 @@ import src.data.preprocessing as prep
 import src.models.mlp_build as build
 import src.models.mlp_train_evaluate as train_eval
 
-# Todo: add generation of dataset in the start of the script
+# Todo: add script of generating datasets in the begining of script
+# Todo: make the experiment modular
 
 def main():
     # --- GLOBAL HYPERPARAMETERS ---
@@ -17,11 +18,12 @@ def main():
     ACTIVATION_FUNCTION = 'relu'
 
     # --- 1. LOAD DATASET ---
-    df_raw = pd.read_csv("data/space_trajectories.csv") 
+    df_raw_medium = pd.read_csv("data/medium_size.csv")
+    df_raw_large = pd.read_csv("data/large_size.csv") 
   
     # --- 2. PREPROCESS DATASET ---
 
-    df_scaled = prep.apply_vector_scaling(df_raw, NUM_OBJECTS)
+    df_scaled = prep.apply_vector_scaling(df_raw_large, NUM_OBJECTS)
     
     train_loader, val_loader = prep.prepare_pytorch_datasets(
         df_scaled, 
